@@ -5,6 +5,7 @@ from securities_exchange import SecuritiesExchange, Order, OrderType, MarketSide
 
 st.set_page_config(layout="wide")
 st.title("Securities Exchange App")
+st.markdown(f"```'allow_market_queue' is set to False, Market Orders will be filled given the available liquidity and then leave the exchange.```")
 
 if 'exchange' not in st.session_state:
     st.session_state.exchange = SecuritiesExchange(verbose=True)
@@ -21,8 +22,8 @@ if st.session_state.selected_tab == 'Submit Order':
     st.header("Order Form")
 
     columns = st.columns(5)
-    ticker = columns[0].text_input("Ticker").upper()
-    order_type = columns[1].radio("Order Type", ["MARKET", "LIMIT"])
+    ticker = columns[0].text_input("Ticker", placeholder="MSFT").upper()
+    order_type = columns[1].radio("Order Type", ["LIMIT", "MARKET"])
     side = columns[2].radio("Side", ["BUY", "SELL"])
     size = columns[3].number_input("Size", min_value=1, step=1)
     price = columns[4].number_input("Price", min_value=0.01, step=0.01) if order_type == "LIMIT" else None
