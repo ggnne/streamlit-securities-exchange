@@ -21,7 +21,7 @@ if st.session_state.selected_tab == 'Submit Order':
     st.header("Order Form")
 
     columns = st.columns(5)
-    ticker = columns[0].text_input("Ticker")
+    ticker = columns[0].text_input("Ticker").upper()
     order_type = columns[1].radio("Order Type", ["MARKET", "LIMIT"])
     side = columns[2].radio("Side", ["BUY", "SELL"])
     size = columns[3].number_input("Size", min_value=1, step=1)

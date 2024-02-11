@@ -3,6 +3,7 @@
 Streamlit App using securities-exchange python package
 
 Built with ❤️ by [ggnne](https://github.com/ggnne)
+Using [securities-exchange](https://github.com/ggnne/securities-exchange)
 
 ## What's this?
 
@@ -53,11 +54,6 @@ make test-e2e-baseline
 # After running tests, display the coverage html report on localhost
 make coverage
 ```
-## Deploy
-
-For the easiest experience, deploy to [Streamlit Cloud](https://streamlit.io/cloud)
-
-For other options, see [Streamilt deployment wiki](https://discuss.streamlit.io/t/streamlit-deployment-guide-wiki/5099)
 
 ## Credits
 
