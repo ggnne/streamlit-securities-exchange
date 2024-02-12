@@ -1,9 +1,7 @@
 import logging
 from io import StringIO
 import streamlit as st
-from securities_exchange import SecuritiesExchange, Order, OrderType, MarketSide
-from securities_exchange.securities_exchange import logger, order_logger
-
+from securities_exchange import SecuritiesExchange, Order, OrderType, MarketSide, logger
 
 st.set_page_config(layout="wide")
 st.title("Securities Exchange App")
@@ -16,7 +14,6 @@ if 'log_stream' not in st.session_state:
     st.session_state.log_stream = StringIO()
     st.session_state.log_handler = logging.StreamHandler(st.session_state.log_stream)
     logger.addHandler(st.session_state.log_handler)
-    order_logger.addHandler(st.session_state.log_handler)
 
 if 'selected_tab' not in st.session_state:
     st.session_state.selected_tab = 'Submit Order'
