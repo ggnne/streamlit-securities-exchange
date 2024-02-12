@@ -75,4 +75,4 @@ new_tab = st.sidebar.radio("Select Tab", tabs, index=tabs.index(st.session_state
 
 if new_tab != st.session_state.selected_tab:
     st.session_state.selected_tab = new_tab
-    st.experimental_rerun()
+    st.rerun()
