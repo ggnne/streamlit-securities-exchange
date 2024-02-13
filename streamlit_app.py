@@ -11,7 +11,7 @@ st.title("Securities Exchange App")
 st.markdown("```'allow_market_queue' is set to False, Market Orders will be filled given the available liquidity and then leave the exchange.```")
 
 if "exchange" not in st.session_state:
-    st.session_state.exchange = SecuritiesExchange(verbose=True)
+    st.session_state.exchange = SecuritiesExchange()
 
 if "log_stream" not in st.session_state:
     config_file = pathlib.Path("logging_config/config.json")
