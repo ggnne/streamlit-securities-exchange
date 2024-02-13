@@ -1,24 +1,31 @@
-import logging
 from io import StringIO
+import json
+import logging.config
+import pathlib
+
 import streamlit as st
-from securities_exchange import SecuritiesExchange, Order, OrderType, MarketSide, logger
+from securities_exchange import SecuritiesExchange, Order, OrderType, MarketSide
 
 st.set_page_config(layout="wide")
 st.title("Securities Exchange App")
-st.markdown(f"```'allow_market_queue' is set to False, Market Orders will be filled given the available liquidity and then leave the exchange.```")
+st.markdown("```'allow_market_queue' is set to False, Market Orders will be filled given the available liquidity and then leave the exchange.```")
 
-if 'exchange' not in st.session_state:
+if "exchange" not in st.session_state:
     st.session_state.exchange = SecuritiesExchange(verbose=True)
 
-if 'log_stream' not in st.session_state:
+if "log_stream" not in st.session_state:
+    config_file = pathlib.Path("logging_config/config.json")
+    with open(config_file) as f:
+        config = json.load(f)
     st.session_state.log_stream = StringIO()
-    st.session_state.log_handler = logging.StreamHandler(st.session_state.log_stream)
-    logger.addHandler(st.session_state.log_handler)
+    config["handlers"]["io_stream"]["stream"] = st.session_state.log_stream
+    logging.config.dictConfig(config=config)
 
-if 'selected_tab' not in st.session_state:
-    st.session_state.selected_tab = 'Submit Order'
+if "selected_tab" not in st.session_state:
+    st.session_state.selected_tab = "Submit Order"
 
-if st.session_state.selected_tab == 'Submit Order':
+if st.session_state.selected_tab == "Submit Order":
+
     st.header("Order Form")
 
     columns = st.columns(5)
